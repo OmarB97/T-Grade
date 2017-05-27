@@ -41,7 +41,7 @@ if (!fs.existsSync('cookies.json')) {
         });
     });
 } else {
-    nightmare.cookies.set(fs.readFileSync('cookies.json'));
+    //nightmare.cookies.set(fs.readFileSync('cookies.json'));
     fileHandler();
 }
 
@@ -77,11 +77,15 @@ function fileHandler() {
     fs.stat('cookies.json', function(error, stats) {
         var buffer = new Buffer(stats.size);
         fs.open('cookies.json', 'r', (err, fd) => {
-            if (!err) {
+            if (err) {
+                console.log("Error, could not open file!");
+                return;
+            } else {
                 fs.read(fd, buffer, 0, buffer.length, null, function(error, bytesRead, buffer) {
                     var data = JSON.parse(buffer.toString("utf8", 0, buffer.length));
-                    var userPass = data.filter(x => x.name === "gtid" || x.name === "password")
-                        .map(x => x.value);
+                    // var userPass = data.filter(x => x.name === "gtid" || x.name === "password")
+                    //     .map(x => x.value);
+                    var userPass = data.map(x => x.value);
                     fs.close(fd);
                     checkGrades(userPass[0], userPass[1]);
                 });
