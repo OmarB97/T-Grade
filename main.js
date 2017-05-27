@@ -1,13 +1,14 @@
-const Nightmare = require('nightmare')
+const Nightmare = require('nightmare'),
+    URL = "https://login.gatech.edu/cas/login?service=https://t-square.gatech.edu/sakai-login-tool/container";
 var prompt = require('prompt'),
     fs = require('fs'),
     nightmare = Nightmare({
-        show: true
+        show: false
     });
 
 if (!fs.existsSync('cookies.json')) {
     nightmare.cookies.get({
-        url: "https://login.gatech.edu/cas/login?service=https://t-square.gatech.edu/sakai-login-tool/container"
+        url: URL
     }).then((cookies) => {
         console.log("   No previous cookies detected.");
         console.log("   Please enter in your login credentials:");
@@ -17,20 +18,20 @@ if (!fs.existsSync('cookies.json')) {
             console.log('  gtid: ' + result.gtid);
             console.log('  password: ' + result.password);
             nightmare.cookies.set([{
-                    url: "https://login.gatech.edu/cas/login?service=https://t-square.gatech.edu/sakai-login-tool/container",
+                    url: URL,
                     name: 'gtid',
                     value: result.gtid,
                     secure: true
                 },
                 {
-                    url: "https://login.gatech.edu/cas/login?service=https://t-square.gatech.edu/sakai-login-tool/container",
+                    url: URL,
                     name: 'password',
                     value: result.password,
                     secure: true
                 }
             ]);
             nightmare.cookies.get({
-                url: "https://login.gatech.edu/cas/login?service=https://t-square.gatech.edu/sakai-login-tool/container"
+                url: URL
             }).then((cookies) => {
                 fs.writeFileSync(
                     'cookies.json',
