@@ -1,0 +1,28 @@
+{
+  "name": "gradecheck",
+  "version": "1.0.0",
+  "description": "Automatically notifies you whenever a new grade gets posted.",
+  "main": "background.js",
+  "scripts": {
+    "test": "node background.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/OmarB97/GradeCheck.git"
+  },
+  "keywords": [
+    "nodejs",
+    "nightmare",
+    "automation",
+    "cookies",
+    "javascript",
+    "grades",
+    "tsquare"
+  ],
+  "author": "Omar Baradei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OmarB97/GradeCheck/issues"
+  },
+  "homepage": "https://github.com/OmarB97/GradeCheck#readme"
+}
