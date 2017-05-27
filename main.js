@@ -36,18 +36,17 @@ if (!fs.existsSync('cookies.json')) {
                     'cookies.json',
                     JSON.stringify(cookies)
                 );
-                fileHandler(checkGrades);
+                fileHandler();
             });
         });
     });
 } else {
     nightmare.cookies.set(fs.readFileSync('cookies.json'));
-    fileHandler(checkGrades);
+    fileHandler();
 }
 
 function checkGrades(username, password) {
     //console.log(username, password);
-    debugger;
     nightmare
         .goto('https://login.gatech.edu/cas/login?service=https://t-square.gatech.edu/sakai-login-tool/container')
         .wait(4000)
@@ -74,7 +73,7 @@ function checkGrades(username, password) {
         });
 }
 
-function fileHandler(callback) {
+function fileHandler() {
     fs.stat('cookies.json', function(error, stats) {
         var buffer = new Buffer(stats.size);
         fs.open('cookies.json', 'r', (err, fd) => {
