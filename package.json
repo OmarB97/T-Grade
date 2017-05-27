@@ -2,9 +2,9 @@
   "name": "gradecheck",
   "version": "1.0.0",
   "description": "Automatically notifies you whenever a new grade gets posted.",
-  "main": "background.js",
+  "main": "main.js",
   "scripts": {
-    "test": "node background.js"
+    "test": "node main.js"
   },
   "repository": {
     "type": "git",
