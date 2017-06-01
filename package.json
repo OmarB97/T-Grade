@@ -27,11 +27,15 @@
   "homepage": "https://github.com/OmarB97/GradeCheck#readme",
   "dependencies": {
     "async": "^2.4.1",
+    "filehound": "^1.16.1",
     "fs": "latest",
+    "html-to-text": "^3.3.0",
+    "mkdirp": "^0.5.1",
     "nightmare": "^2.10.0",
     "node-notifier": "^5.1.2",
     "path": "^0.12.7",
     "prompt": "^1.0.0",
+    "tabletojson": "^0.4.0",
     "vo": "^4.0.2"
   }
 }
