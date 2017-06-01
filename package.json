@@ -24,5 +24,14 @@
   "bugs": {
     "url": "https://github.com/OmarB97/GradeCheck/issues"
   },
-  "homepage": "https://github.com/OmarB97/GradeCheck#readme"
+  "homepage": "https://github.com/OmarB97/GradeCheck#readme",
+  "dependencies": {
+    "async": "^2.4.1",
+    "fs": "latest",
+    "nightmare": "^2.10.0",
+    "node-notifier": "^5.1.2",
+    "path": "^0.12.7",
+    "prompt": "^1.0.0",
+    "vo": "^4.0.2"
+  }
 }

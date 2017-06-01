@@ -1,9 +1,13 @@
 const Nightmare = require('nightmare'),
+    path = require('path'),
     URL = "https://login.gatech.edu/cas/login?service=https://t-square.gatech.edu/sakai-login-tool/container";
 var prompt = require('prompt'),
     fs = require('fs'),
+    vo = require('vo'),
+    async = require('async'),
     nightmare = Nightmare({
-        show: true
+        show: true,
+        waitTimeout: 60000
     });
 
 if (!fs.existsSync('cookies.json')) {
@@ -48,7 +52,6 @@ if (!fs.existsSync('cookies.json')) {
 }
 
 function checkGrades(username, password) {
-    debugger;
     nightmare
         .goto('https://login.gatech.edu/cas/login?service=https://t-square.gatech.edu/sakai-login-tool/container')
         .insert('#username', username)
@@ -61,19 +64,28 @@ function checkGrades(username, password) {
             links.splice(index, 1);
             return links;
         })
-        .then((classLink) => {
-            console.log(classLink);
-            return nightmare
-                .end()
-                .then(function(result) {
-                    console.log(result);
-                })
-                .catch(function(error) {
-                    console.error('Search failed:', error);
-                });
-
-        })
-
+        .then((classLinks) => {
+            console.log(classLinks);
+            async.eachOfSeries(classLinks, function(link, index, callback) {
+                nightmare
+                    .goto(link)
+                    .wait("[title='For storing and computing assessment grades from Tests & Quizzes or that are manually entered']")
+                    .click("[title='For storing and computing assessment grades from Tests & Quizzes or that are manually entered']")
+                    //.wait(".itemName")
+                    .wait("body")
+                    .html(path.dirname(path.resolve(__dirname, 'main.js')) + '/grades/class' + (index + 1) + '.txt', 'HTMLComplete');
+                callback();
+            }, function(err) {
+                nightmare
+                    .end()
+                    .then(function(result) {
+                        console.log(result);
+                    })
+                    .catch(function(error) {
+                        console.error('Search failed:', error);
+                    });
+            });
+        });
 }
 
 function fileHandler(callback) {
