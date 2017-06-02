@@ -27,6 +27,7 @@
   "homepage": "https://github.com/OmarB97/GradeCheck#readme",
   "dependencies": {
     "async": "^2.4.1",
+    "crontab": "^1.1.3",
     "filehound": "^1.16.1",
     "fs": "latest",
     "html-to-text": "^3.3.0",

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Nightmare = require('nightmare'),
     path = require('path'),
     Filehound = require('filehound'),
