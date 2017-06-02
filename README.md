@@ -6,7 +6,11 @@ GradeCheck is an application which does all the "hard work" for you so you don't
 
 At this point in time, you must already have node and npm installed on your computer beforehand to run this. Additionally, this will only work on Linux-based platforms, with plans to support Windows in the future!
 
-To obtain all required dependencies, simply run:
+So, the first step will be to clone the repository using the following command (or manually by using the green "clone" button on github):
+
+    git clone https://github.com/OmarB97/GradeCheck.git
+
+Next, to obtain all required dependencies, simply run:
 
     npm install
     
