@@ -10,7 +10,7 @@ To obtain all required dependencies, simply run:
 
     npm install
     
-If you are running this for the first time, you will be prompted for your login credentials, so you will need to actually manually run the application (only the first time) using:
+If you are running this for the first time, you will be prompted for your login credentials, so you will need to manually run the application (only the first time) using:
 
     node main.js
 
