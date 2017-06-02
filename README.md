@@ -7,8 +7,12 @@ GradeCheck is an application which does all the "hard work" for you so you don't
 To obtain all required dependencies, simply run:
 
     npm install
+    
+If you are running this for the first time, you will be prompted for your login credentials, so you will need to actually manually run the application (only the first time) using:
 
-To allow the application to periodically run and notify you whenever a grade is posted, simply run:
+    node main.js
+
+Afterwards, to allow the application to periodically run and notify you whenever a grade is posted, simply run:
 
     node setup.js
 
