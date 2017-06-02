@@ -64,8 +64,6 @@ function loginHandler() {
             } else {
                 fs.read(fd, buffer, 0, buffer.length, null, function(error, bytesRead, buffer) {
                     var data = JSON.parse(buffer.toString("utf8", 0, buffer.length));
-                    // var userPass = data.filter(x => x.name === "gtid" || x.name === "password")
-                    //     .map(x => x.value);
                     userPass = data.map(x => x.value);
                     fs.closeSync(fd);
                     checkGrades(userPass[0], userPass[1]);
@@ -94,7 +92,6 @@ function checkGrades(username, password) {
                     .goto(link)
                     .wait("[title='For storing and computing assessment grades from Tests & Quizzes or that are manually entered']")
                     .click("[title='For storing and computing assessment grades from Tests & Quizzes or that are manually entered']")
-                    //.wait(".itemName")
                     .wait("body")
                     .html('./classes/class' + (index + 1) + '.txt', 'HTMLComplete');
                 callback();
@@ -118,7 +115,6 @@ function checkGrades(username, password) {
                                     .find()
                                     .then(files => {
                                         files.forEach((file, index) => {
-                                            // you now have each html file!
                                             extractGrades(file, (index + 1), gradeHandler);
                                         });
                                     });
@@ -144,10 +140,7 @@ function extractGrades(html, classNum, callback) {
             gradeData = "{\"" + gradeData.substring(gradeData.indexOf("Title"), gradeData.indexOf("*")) +
                 gradeData.substring(gradeData.indexOf("*") + 1);
             grades.push(JSON.parse(gradeData));
-            //if (!fs.existsSync('cookies.json')) {
-            // need to extract just the part of the string after the word "Title" !!!!
         });
-        // make new directory here!!!
         mkdirp('./classes/class' + classNum, function(err) {
             if (err) console.error(err)
             var oldPath = './classes/class' + classNum + '/oldGrades.json',
@@ -186,6 +179,7 @@ function gradeHandler(oldPath, newGrades, classIndex) {
                                 message: 'New grade added to ' + classNames[classIndex] + ': ' + newGrade["Title"],
                                 sound: true
                             });
+                            // @TODO take user to T-Square upon clicking on notification.
                         }
                         noMatch = true;
                     });
