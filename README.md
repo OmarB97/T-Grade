@@ -8,9 +8,9 @@ To obtain all required dependencies, simply run:
 
     npm install
 
-And you can currently run the application by entering this into the terminal in the local file path:
+To allow the application to periodically run and notify you whenever a grade is posted, simply run:
 
-    node main.js
+    node setup.js
 
 
 If you come across any issues or would like to make a contribution, please submit an issue or a pull request! Thank you, and enjoy!
