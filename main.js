@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const Nightmare = require('nightmare'),
     path = require('path'),
     Filehound = require('filehound'),
@@ -48,15 +46,15 @@ if (!fs.existsSync('cookies.json')) {
                     'cookies.json',
                     JSON.stringify(cookies)
                 );
-                loginHandler(checkGrades)
+                loginHandler()
             });
         });
     });
 } else {
-    loginHandler(checkGrades);
+    loginHandler();
 }
 
-function loginHandler(callback) {
+function loginHandler() {
     fs.stat('./cookies.json', function(error, stats) {
         var buffer = new Buffer(stats.size);
         fs.open('cookies.json', 'r', (err, fd) => {

@@ -1,5 +1,8 @@
 require('crontab').load(function(err, crontab) {
-    var job = crontab.create('node ' + __dirname + '/main.js', '@hourly'); // '' + __dirname + '/main.js'
+    crontab.jobs().forEach(job => {
+        crontab.remove(job);
+    });
+    var job = crontab.create('cd ' + __dirname + ' && /usr/local/bin/node ' + __dirname + '/main.js\n', '@hourly'); // '' + __dirname + '/main.js'
     if (job == null) {
         console.log('failed to create job');
     }
@@ -8,4 +11,8 @@ require('crontab').load(function(err, crontab) {
             console.log(err);
         }
     });
+
+    console.log(job.toString());
 });
+
+// /usr/local/bin/node
